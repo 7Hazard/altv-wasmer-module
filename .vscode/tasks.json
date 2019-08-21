@@ -1,0 +1,50 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        // {
+        //     "label": "cbindgen Client",
+        //     "type": "shell",
+        //     "command": "cbindgen --config cbindgen.toml --crate client --output target/include/altv-wasmer-runtime-client.hpp client",
+        //     "problemMatcher": [],
+        //     "group": "build"
+        // },
+        // {
+        //     "label": "cbindgen Server",
+        //     "type": "shell",
+        //     "command": "cbindgen --config cbindgen.toml --crate server --output target/include/altv-wasmer-runtime-server.hpp server",
+        //     "problemMatcher": [],
+        //     "group": "build"
+        // },
+        {
+            "label": "rust bindgen Client",
+            "type": "shell",
+            "command": "bindgen",
+            "args": [
+                "${workspaceFolder}/../altv-capi/client/altv-capi.hpp",
+                "-o${workspaceFolder}/client/src/altv_capi.rs"
+            ],
+            "problemMatcher": [],
+            "group": "build",
+        },
+        {
+            "label": "rust bindgen Server",
+            "type": "shell",
+            "command": "bindgen",
+            "args": [
+                "${workspaceFolder}/../altv-capi/server/altv-capi.hpp",
+                "-o${workspaceFolder}/server/src/altv_capi.rs"
+            ],
+            "problemMatcher": [],
+            "group": "build",
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "cargo build --release",
+            "problemMatcher": ["$rustc"],
+            "group": "build"
+        }
+    ]
+}
