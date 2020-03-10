@@ -8,12 +8,12 @@ malloc and other memory allocation functions available in native languages that
 compile to WASM such as C, C++, Rust etc...
 
 Please note that the memory allocator in the runtime was implemented by free-hand
-and does not follow a specific well-known algorithm and may very well contain bugs
-or inefficiencies. However compatability with existing native languages is
-guaranteed and some efficacies are in place such as coalescing.  
+and does not follow some well-known and published algorithm and may very well
+contain bugs or inefficiencies. However compatability with existing native
+languages is guaranteed and some efficacies are in place such as coalescing.  
 
 Parallelism, concurrency and multithreading is not really features present for
-WASM programs using this module. Considering that alt:V promotes an even-based
+WASM programs using this module. Considering that alt:V promotes an event-based
 model for processing, it is not a priority for this module. Several languages
 already have their own methods and implementations for how they handle concurrency
 and paralellism.
