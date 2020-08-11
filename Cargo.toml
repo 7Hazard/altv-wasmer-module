@@ -1,8 +1,14 @@
-[workspace]
-members = [
-    # "client",
-    "server"
-]
+[package]
+name = "altv_wasmer_module"
+version = "0.0.1"
+edition = "2018"
+
+[lib]
+name = "altv_wasmer_module"
+crate-type = ["staticlib"]
+
+[dependencies]
+altv-capi = { path = "capi" }
 
 [profile.release]
 debug = true

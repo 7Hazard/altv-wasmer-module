@@ -1,0 +1,23 @@
+[package]
+name = "altv-capi"
+version = "0.0.1"
+build = "build.rs"
+edition = "2018"
+
+[lib]
+name = "altv_capi"
+crate-type = ["lib"]
+
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+reqwest = { version = "0.10", features = ["json"] }
+tokio = { version = "0.2", features = ["full"] }
+error-chain = "0.12.2"
+unzip = "0.1.0"
+#bindgen = "0.54.1"
+bindgen = { git = "https://github.com/7Hazard/rust-bindgen.git" }
+
+[profile.release]
+debug = true

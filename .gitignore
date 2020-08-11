@@ -1,2 +1,4 @@
 .vscode/ipch
 target
+capi/altv-capi*
+capi/src/altv_*.rs
