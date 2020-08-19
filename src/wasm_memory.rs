@@ -3,16 +3,16 @@ use wasmer_runtime::{Ctx, Memory, Instance};
 use wasmer_runtime::units::Pages;
 use once_cell::sync::OnceCell;
 use std::sync::{Mutex, MutexGuard, RwLock, RwLockReadGuard};
-use wasm_resource::WasmResource;
 use std::collections::{HashMap, BTreeMap, HashSet};
 use std::os::raw::c_void;
 use wasmer_runtime::memory::MemoryView;
-use ctxdata::CtxData;
+use crate::wasm_ctxdata::CtxData;
 use std::mem::size_of;
 use std::ptr::{null_mut, null};
 use std::cell::UnsafeCell;
 
 /// Size of one WASM memory page
+#[allow(dead_code)]
 const PAGE_SIZE: usize = 65536;
 
 struct HeapBlock
@@ -43,10 +43,10 @@ pub struct Heap<'ctx>
     allocations: HashSet<u32>,
 
     /// The total amount of allocated memory
-    pub totalAllocated: u32,
+    pub total_allocated: u32,
 
     /// Total unallocated memory
-    pub totalUnallocated: u32,
+    pub total_unallocated: u32,
 }
 
 impl<'ctx> Heap<'ctx>
@@ -59,23 +59,23 @@ impl<'ctx> Heap<'ctx>
 
         // Get heap base from exported global
         let heapbase = wasminst.exports().find(
-            |(name, export)| {
+            |(name, _export)| {
                 name == "__heap_base"
             }
         ).unwrap().1;
         let start = match heapbase {
-            wasmer_runtime::Export::Global(g) => g.get().to_u64() as u32,
+            wasmer_runtime::Export::Global(g) => g.get().to_u128() as u32,
             _ => {
                 loge!("Could not retrieve '__heap_base' as a global export");
                 0
             }
         };
-        logv!("Heap start: {}", start);
+        logi!("Heap start: {}", start);
 //        assert!(start, "HEAP BASE HAS TO NOT BE 0 (for now)");
         let size = memview.len() as u32 - start;
-        logv!("Heap size: {}", size);
+        logi!("Heap size: {}", size);
 
-//        logv!("Size of HeapBlock: {}", size_of::<HeapBlock>());
+//        logi!("Size of HeapBlock: {}", size_of::<HeapBlock>());
 
         // Initialize the first unallocated block in memory
         unsafe {
@@ -96,8 +96,8 @@ impl<'ctx> Heap<'ctx>
                 size: size,
 //            allocations: BTreeMap::new(),
                 allocations: HashSet::new(),
-                totalAllocated: 0,
-                totalUnallocated: (*first).size,
+                total_allocated: 0,
+                total_unallocated: (*first).size,
             };
         }
     }
@@ -123,17 +123,17 @@ impl<'ctx> Heap<'ctx>
                 }
 
                 // DEBUG
-//                logv!("IT BLOCK ptr: {}", (*cur).start-size_of::<HeapBlock>() as u32);
-//                logv!("IT BLOCK start: {}", (*cur).start);
-//                logv!("IT BLOCK size: {}", (*cur).size);'
+//                logi!("IT BLOCK ptr: {}", (*cur).start-size_of::<HeapBlock>() as u32);
+//                logi!("IT BLOCK start: {}", (*cur).start);
+//                logi!("IT BLOCK size: {}", (*cur).size);'
                 // DEBUG
 
                 if !f(cur) || (*cur).next == null_mut() {
-//                    logv!("IT STOPPING ITERATION");
+//                    logi!("IT STOPPING ITERATION");
                     break;
                 }
 
-//                logv!("IT CONTINUING TO NEXT BLOCK");
+//                logi!("IT CONTINUING TO NEXT BLOCK");
                 cur = (*cur).next;
             }
         }
@@ -141,25 +141,25 @@ impl<'ctx> Heap<'ctx>
 
     pub fn alloc(&mut self, size: u32) -> u32
     {
-//        logv!("malloc: allocating size {}", size);
+//        logi!("malloc: allocating size {}", size);
         unsafe {
             let mut freeblock: *mut HeapBlock = null_mut();
 
-//            logv!("malloc: iterating heapblocks");
+//            logi!("malloc: iterating heapblocks");
             self.iter(|block| {
                 // if block size is at least the requested size
                 if (*block).free && (*block).size > size {
                     freeblock = block;
-//                    logv!("malloc: found free block");
+//                    logi!("malloc: found free block");
                     return false; // stop iterating
                 }
                 else {
-//                    logv!("malloc: block was not free");
+//                    logi!("malloc: block was not free");
                     return true; // continue iterating
                 }
             });
 
-//            logv!("malloc: freeblock start {}", (*freeblock).start);
+//            logi!("malloc: freeblock start {}", (*freeblock).start);
 
             if freeblock == null_mut()
             {
@@ -171,7 +171,7 @@ impl<'ctx> Heap<'ctx>
             // If the free block is larger than requested, create a new free heap block
             if (*freeblock).size > size
             {
-//                logv!("malloc: freeblock was larger than requested: {}, free {}", size,
+//                logi!("malloc: freeblock was larger than requested: {}, free {}", size,
 //                    (*freeblock).size);
                 let newfreeblock: *mut HeapBlock = freeblock.offset((size+1) as isize);
                 (*newfreeblock) = HeapBlock {
@@ -182,8 +182,8 @@ impl<'ctx> Heap<'ctx>
                     prev: freeblock,
                 };
 
-//                logv!("malloc: newfreeblock start: {}", (*newfreeblock).start);
-//                logv!("malloc: newfreeblock size: {}", (*newfreeblock).size);
+//                logi!("malloc: newfreeblock start: {}", (*newfreeblock).start);
+//                logi!("malloc: newfreeblock size: {}", (*newfreeblock).size);
 
                 (*freeblock).size = size;
                 (*freeblock).next = newfreeblock;
@@ -191,11 +191,11 @@ impl<'ctx> Heap<'ctx>
             }
 
             self.allocations.insert((*freeblock).start);
-            self.totalAllocated+=size;
-            self.totalUnallocated-=size;
+            self.total_allocated +=size;
+            self.total_unallocated -=size;
 
-//            logv!("malloc: heapblock ptr: {}", (*freeblock).start - size_of::<HeapBlock>() as u32);
-//            logv!("malloc: returning {}", (*freeblock).start);
+//            logi!("malloc: heapblock ptr: {}", (*freeblock).start - size_of::<HeapBlock>() as u32);
+//            logi!("malloc: returning {}", (*freeblock).start);
 
             return (*freeblock).start;
         }
@@ -204,9 +204,9 @@ impl<'ctx> Heap<'ctx>
     pub fn dealloc(&mut self, ptr: u32)
     {
         // The ptr to the start of the heap block
-//        logv!("free: freeing {}", ptr);
+//        logi!("free: freeing {}", ptr);
         let blockptr = ptr - size_of::<HeapBlock>() as u32;
-//        logv!("free: blockptr: {}", blockptr);
+//        logi!("free: blockptr: {}", blockptr);
 
         if !self.allocations.contains(&ptr)
         {
@@ -220,18 +220,18 @@ impl<'ctx> Heap<'ctx>
 
         unsafe {
             let block: *mut HeapBlock = mem[blockptr as usize].as_ptr() as *mut HeapBlock;
-//            logv!("free: block size: {}", (*block).size);
+//            logi!("free: block size: {}", (*block).size);
             (*block).free = true;
 
-            self.totalUnallocated+=(*block).size;
-            self.totalAllocated-=(*block).size;
+            self.total_unallocated +=(*block).size;
+            self.total_allocated -=(*block).size;
 
             // Check if prev block is free, coalesce
             let prevblock = (*block).prev;
             if prevblock != null_mut() && (*prevblock).free
             {
-//                logv!("free: prev block was {}", (*prevblock).start as u32);
-//                logv!("free: prevblock was valid and free");
+//                logi!("free: prev block was {}", (*prevblock).start as u32);
+//                logi!("free: prevblock was valid and free");
                 (*prevblock).size+=(*block).size+size_of::<HeapBlock>() as u32;
                 (*prevblock).next = (*block).next;
             }
@@ -240,16 +240,16 @@ impl<'ctx> Heap<'ctx>
             let nextblock = (*block).next;
             if nextblock != null_mut() && (*nextblock).free && prevblock != null_mut()
             {
-//                logv!("free: next block was {}", (*nextblock).start as u32);
-//                logv!("free: prevblock AND nextblock was valid and free");
+//                logi!("free: next block was {}", (*nextblock).start as u32);
+//                logi!("free: prevblock AND nextblock was valid and free");
                 // if prev was free
                 (*prevblock).size+=(*nextblock).size+size_of::<HeapBlock>() as u32;
                 (*prevblock).next = (*nextblock).next;
             }
             else if nextblock != null_mut() && (*nextblock).free
             {
-//                logv!("free: next block was {}", (*nextblock).start as u32);
-//                logv!("free: nextblock was valid and free");
+//                logi!("free: next block was {}", (*nextblock).start as u32);
+//                logi!("free: nextblock was valid and free");
                 // if only next is free
                 (*block).size+=(*nextblock).size+size_of::<HeapBlock>() as u32;
                 (*block).next = (*nextblock).next;

@@ -5,10 +5,12 @@ edition = "2018"
 
 [lib]
 name = "altv_wasmer_module"
-crate-type = ["staticlib"]
+crate-type = ["staticlib", "cdylib"]
 
 [dependencies]
 altv-capi = { path = "capi" }
+wasmer-runtime = "0.17.1"
+once_cell = "0.2.4"
 
 [profile.release]
 debug = true

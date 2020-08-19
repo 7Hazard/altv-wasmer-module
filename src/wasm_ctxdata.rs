@@ -1,4 +1,4 @@
-use memory::Heap;
+use crate::wasm_memory::Heap;
 use wasmer_runtime::{Ctx, Instance};
 use std::cell::UnsafeCell;
 

@@ -6,7 +6,7 @@
         {
             "label": "Build Debug",
             "type": "shell",
-            "command": "cargo build --release",
+            "command": "cargo build",
             "problemMatcher": ["$rustc"],
             "group": "build"
         },
