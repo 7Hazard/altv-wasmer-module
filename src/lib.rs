@@ -5,21 +5,23 @@ use altv_capi::*;
 use std::option::Option;
 use std::ffi::{CString, CStr};
 use std::ptr::{null, null_mut};
+use wasmer_runtime::{Module, compile, Instance};
 
 mod util;
 #[macro_use]
 mod log;
 mod resource;
 mod wasm_util;
+mod wasm_pointers;
 mod wasm_memory;
 mod wasm_ctxdata;
+mod wasm_capi;
 #[allow(non_snake_case)]
-mod wasm_imports;
+mod imports;
 
 pub struct WasmResource {
-  pub name: String,
-  //    pub on_event_callbacks: HashSet<u32>,
-  pub wasm: wasmer_runtime::Instance,
+  name: String,
+  instance: Instance,
 }
 
 impl WasmResource {
@@ -29,6 +31,13 @@ impl WasmResource {
       return &mut *(alt_CAPIResource_Impl_GetExtra(res) as *mut WasmResource);
     };
   }
+
+//  pub fn instance(&self) -> &Instance {
+//    &self.instance
+//  }
+//  pub fn instance_mut(&mut self) -> &mut Instance {
+//    &mut self.instance
+//  }
 }
 
 unsafe extern "C" fn create_resource(runtime: *mut alt_IScriptRuntime, resource: *mut alt_IResource) -> *mut alt_IResource_Impl
@@ -60,13 +69,21 @@ unsafe extern "C" fn create_resource(runtime: *mut alt_IScriptRuntime, resource:
     return null_mut();
   }
 
-  let instance = wasmer_runtime::instantiate(&src, wasm_imports::get());
+  let module = match compile(&src) {
+    Err(e) => {
+      loge!("Error compiling module: {:?}", e);
+      return null_mut();
+    },
+    Ok(module) => module
+  };
 
-  if !instance.is_ok() {
-    let err = instance.err().unwrap();
-    loge!("Could not create WASM instance \n {}", err.to_string());
-    return std::ptr::null_mut();
-  }
+  let instance = match module.instantiate(imports::get()) {
+    Err(e) => {
+      loge!("Error instantiating module: {}", e.to_string());
+      return null_mut();
+    },
+    Ok(val) => val
+  };
 
   let resource_impl = alt_CAPIResource_Impl_Create(
     resource,
@@ -81,12 +98,12 @@ unsafe extern "C" fn create_resource(runtime: *mut alt_IScriptRuntime, resource:
   let mut wasmres = Box::new(
     WasmResource {
       name: String::from(util::from_stringview(&mut main)),
-      wasm: instance.unwrap(),
+      instance: instance,
     }
   );
 
-  // Create CtxData (Heap etc...)
-  wasm_ctxdata::CtxData::attach(&mut wasmres.wasm);
+  // Attach CtxData (Heap etc...)
+  wasm_ctxdata::CtxData::attach(&mut wasmres.instance);
 
   alt_CAPIResource_Impl_SetExtra(resource_impl, Box::into_raw(wasmres) as _);
 

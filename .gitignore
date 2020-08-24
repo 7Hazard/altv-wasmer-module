@@ -2,3 +2,5 @@
 target
 capi/altv-capi*
 capi/src/altv_*.rs
+
+src/wasm_capi/structs.rs

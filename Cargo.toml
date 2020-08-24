@@ -2,6 +2,7 @@
 name = "altv_wasmer_module"
 version = "0.0.1"
 edition = "2018"
+build = "build.rs"
 
 [lib]
 name = "altv_wasmer_module"
@@ -9,8 +10,17 @@ crate-type = ["staticlib", "cdylib"]
 
 [dependencies]
 altv-capi = { path = "capi" }
-wasmer-runtime = "0.17.1"
 once_cell = "0.2.4"
+wasmer-runtime = { version = "0.17.1", features = ["default-backend-cranelift"] }
+#wasmer-wasi = "0.17.1"
+
+[build-dependencies]
+serde = { version = "1.0.115", features = ["derive"] }
+serde_repr = "0.1.6"
+serde_json = { version = "1.0.57" }
+reqwest = { version = "0.10", features = ["json"] }
+tokio = { version = "0.2", features = ["full"] }
+error-chain = "0.12.2"
 
 [profile.release]
 debug = true

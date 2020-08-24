@@ -2,25 +2,20 @@
 use altv_capi::*;
 use crate::{WasmResource, util};
 use wasmer_runtime::memory::MemoryView;
-use crate::wasm_util::get_id_by_ptr;
 use wasmer_runtime::Value;
+use crate::wasm_ctxdata::{WasmCtxDataGetter, CtxData};
 
 pub unsafe extern "C" fn start(resource: *mut alt_IResource) -> bool
 {
     let wasmres = WasmResource::from(alt_IResource_GetImpl(resource));
     logi!("Starting {}", wasmres.name);
-
-    let inst = &wasmres.wasm;
-
-    // debug
-    let mem = inst.context().memory(0);
-    let memview: MemoryView<u8> = mem.view();
-
-    let core_id = get_id_by_ptr(util::core());
-
+    
+    let inst = &mut wasmres.instance;
+    let ctx = inst.context_mut();
+    let core_ptr = ctx.ctxdata_mut().ptr_table.get_id_by_ptr(util::core());
     let main = inst.call(
         "altMain",
-        &[Value::I32(core_id as i32)]
+        &[Value::I32(core_ptr as _)]
     );
     if main.is_ok()
     {
