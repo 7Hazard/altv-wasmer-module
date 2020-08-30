@@ -5,21 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33e08a54-ceaa-4ed5-8d14-f436d61287a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/imports/capi.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imports/mod.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imports/wasi.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/wasm_capi/mod.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/wasm_pointers.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.rs" beforeDir="false" afterPath="$PROJECT_DIR$/build.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resource.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resource.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wasm_ctxdata.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/wasm_ctxdata.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wasm_imports.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wasm_util.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/wasm_util.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/imports/capi.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/imports/capi.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/imports/wasi.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/imports/wasi.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wasm_capi/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/wasm_capi/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wasm_pointers.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/wasm_pointers.rs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,42 +24,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lib.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="112" column="71" selection-start-line="112" selection-start-column="71" selection-end-line="112" selection-end-column="71" />
-              <folding>
-                <element signature="e#2925#2926#0" expanded="true" />
-                <element signature="e#2955#2956#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build.rs">
+        <entry file="file://$PROJECT_DIR$/src/imports/capi.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="97" lean-forward="true" selection-start-line="97" selection-end-line="97" />
+            <state relative-caret-position="451">
+              <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/target/altv-capi-client.json">
+        <entry file="file://$PROJECT_DIR$/src/wasm_pointers.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="10" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wasm_capi/mod.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="3" selection-end-column="19" />
+            <state relative-caret-position="383">
+              <caret line="102" column="29" selection-start-line="102" selection-start-column="29" selection-end-line="102" selection-end-column="29" />
+              <folding>
+                <element signature="e#2562#2563#0" expanded="true" />
+                <element signature="e#2648#2649#0" expanded="true" />
+                <element signature="e#3845#3846#0" expanded="true" />
+                <element signature="e#3874#3875#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,67 +51,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/wasm_capi/structs.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="1616" column="2" selection-start-line="1616" selection-start-column="2" selection-end-line="1616" selection-end-column="2" />
+            <state relative-caret-position="237">
+              <caret line="640" column="10" lean-forward="true" selection-start-line="640" selection-start-column="10" selection-end-line="640" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/imports/capi.rs">
+        <entry file="file://$PROJECT_DIR$/build.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="70" selection-start-line="21" selection-start-column="70" selection-end-line="21" selection-end-column="70" />
+            <state relative-caret-position="186">
+              <caret line="248" column="55" selection-start-line="248" selection-start-column="55" selection-end-line="248" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/imports/wasi.rs">
+        <entry file="file://$PROJECT_DIR$/Cargo.toml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+            <state>
+              <caret column="9" selection-start-column="9" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/imports/mod.rs">
+        <entry file="file://$PROJECT_DIR$/target/altv-capi-client.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-              <folding>
-                <element signature="e#442#443#0" expanded="true" />
-                <element signature="e#483#484#0" expanded="true" />
-                <element signature="e#518#519#0" expanded="true" />
-                <element signature="e#561#562#0" expanded="true" />
-                <element signature="e#614#615#0" expanded="true" />
-                <element signature="e#655#656#0" expanded="true" />
-                <element signature="e#699#700#0" expanded="true" />
-                <element signature="e#740#741#0" expanded="true" />
-                <element signature="e#778#779#0" expanded="true" />
-                <element signature="e#821#822#0" expanded="true" />
-                <element signature="e#858#859#0" expanded="true" />
-                <element signature="e#901#902#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/capi/src/altv_client.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="2" column="501498" selection-start-line="2" selection-start-column="501498" selection-end-line="2" selection-end-column="501498" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/capi/src/lib.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="4" selection-end-column="19" />
+            <state relative-caret-position="547">
+              <caret line="81595" column="1" selection-start-line="81595" selection-start-column="1" selection-end-line="81595" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -151,34 +95,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nullptr_t</find>
-      <find>alt_IMValue_Type</find>
-      <find>unsafe</find>
-      <find>Option::from</find>
-      <find>\</find>
-      <find>util::</find>
-      <find>capi</find>
-      <find>WasmResource</find>
-      <find>logv!</find>
-      <find>wasm_imports_capi</find>
-      <find>imports</find>
-      <find>generate_import_object</find>
-      <find>generate_import_object_from_st</find>
-      <find>deref</find>
-      <find>ptr</find>
-      <find>Array</find>
-      <find>args_get</find>
-      <find>args</find>
-      <find>structs</find>
-      <find>kind&quot;: 2</find>
-      <find>kind&quot;: 1</find>
-      <find>Type::</find>
-      <find>alt_Array_RefBase_RefStore_IEntity</find>
-      <find>kind&quot;: 6</find>
-      <find>void*</find>
-      <find>enums</find>
-      <find>alt_CEvent_Type</find>
-      <find>Wasm_alt_CEvent_Type</find>
+      <find>let</find>
+      <find>let</find>
+      <find>enum</find>
+      <find>alt_RefBase_RefStore_IPlayer</find>
+      <find>alt_Array</find>
+      <find>alt_Vector</find>
+      <find>array_size&quot;: 0</find>
+      <find>type_</find>
+      <find>alt_Vector_float_2_VectorLayout_float_2</find>
+      <find>alt_VectorLayout_float_2&quot;</find>
+      <find>alt_VectorLayout_float_2&quot;: {</find>
+      <find>alt_Vector_float_3_PointLayout</find>
+      <find>pointee&quot;:</find>
+      <find>alt_Matrix_float_4_4_MatrixLayout_float_4_4</find>
+      <find>alt_VectorLay</find>
+      <find>alt_VectorLayout_float_2</find>
+      <find>alt_MatrixLayout_float_4_4_Create_3</find>
+      <find>alt_Vector_int_4_VectorLayout_int_4</find>
+      <find>alt_MatrixLayout_float_4_4_Create_1</find>
+      <find>**</find>
+      <find>**</find>
+      <find>alt_config_Node</find>
+      <find>kind&quot;: 4</find>
+      <find>alt_VectorLayout</find>
+      <find>pkg</find>
+      <find>alt_ICore</find>
+      <find>array</find>
+      <find>is_virtual</find>
+      <find>alt_IPackage</find>
+      <find>ptr_by</find>
     </findStrings>
     <replaceStrings>
       <replace>pub unsafe</replace>
@@ -188,6 +134,7 @@
       <replace>logi!</replace>
       <replace>capi</replace>
       <replace>TypeKind::</replace>
+      <replace>*</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -209,7 +156,6 @@
         <option value="$PROJECT_DIR$/server/src/memory.rs" />
         <option value="$PROJECT_DIR$/capi/cbindgen.toml" />
         <option value="$PROJECT_DIR$/capi/altv-capi-client-static-win32/include/altv-capi-predefines.h" />
-        <option value="$PROJECT_DIR$/capi/altv-capi-client-static-win32/include/client/altv-capi.h" />
         <option value="$PROJECT_DIR$/capi/src/lib.rs" />
         <option value="$PROJECT_DIR$/capi/Cargo.toml" />
         <option value="$PROJECT_DIR$/capi/build.rs" />
@@ -227,17 +173,19 @@
         <option value="$PROJECT_DIR$/src/lib.rs" />
         <option value="$PROJECT_DIR$/src/resource.rs" />
         <option value="$PROJECT_DIR$/src/wasm_ctxdata.rs" />
-        <option value="$PROJECT_DIR$/src/wasm_pointers.rs" />
-        <option value="$PROJECT_DIR$/Cargo.toml" />
-        <option value="$PROJECT_DIR$/target/altv-capi-client.json" />
         <option value="$PROJECT_DIR$/src/wasm_capi/struct.rs" />
-        <option value="$PROJECT_DIR$/capi/src/altv_client.rs" />
-        <option value="$PROJECT_DIR$/src/wasm_capi/structs.rs" />
-        <option value="$PROJECT_DIR$/src/wasm_capi/mod.rs" />
-        <option value="$PROJECT_DIR$/src/imports/capi.rs" />
         <option value="$PROJECT_DIR$/src/imports/mod.rs" />
         <option value="$PROJECT_DIR$/src/imports/wasi.rs" />
+        <option value="$PROJECT_DIR$/src/wasm_capi/mod.rs" />
+        <option value="$PROJECT_DIR$/capi/altv-capi-client-static-win32/include/client/altv-capi.h" />
+        <option value="$PROJECT_DIR$/capi/altv-capi-client-static-mtd-win32/include/client/altv-capi.h" />
+        <option value="$PROJECT_DIR$/capi/src/altv_client.rs" />
+        <option value="$PROJECT_DIR$/target/altv-capi-client.json" />
+        <option value="$PROJECT_DIR$/Cargo.toml" />
+        <option value="$PROJECT_DIR$/src/wasm_capi/structs.rs" />
         <option value="$PROJECT_DIR$/build.rs" />
+        <option value="$PROJECT_DIR$/src/wasm_pointers.rs" />
+        <option value="$PROJECT_DIR$/src/imports/capi.rs" />
       </list>
     </option>
   </component>
@@ -257,6 +205,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -296,18 +246,16 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1598234412519" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1598754232054" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/server/Cargo.toml" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Rust" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -378,7 +326,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49929875" visible="true" weight="0.18283582" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49929875" visible="true" weight="0.18496802" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -387,7 +335,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.50070125" side_tool="true" weight="0.1748401" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30985916" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30985916" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -408,83 +356,13 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/build.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rustup/toolchains/stable-x86_64-pc-windows-msvc/lib/rustlib/src/rust/src/libcore/slice/mod.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="5809" column="14" selection-start-line="5809" selection-start-column="14" selection-end-line="5809" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/log.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="64" lean-forward="true" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/memory.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="102" column="5" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/wasm_resource.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="65" column="12" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/Cargo.toml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/imports.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/lib.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="31" selection-start-line="31" selection-end-line="32" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/wasm_util.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-393">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rustup/toolchains/stable-x86_64-pc-windows-msvc/lib/rustlib/src/rust/src/liballoc/vec.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1041">
-          <caret line="461" column="18" selection-start-line="461" selection-start-column="18" selection-end-line="461" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/wasm_runtime.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="25" column="43" lean-forward="true" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/memory.rs" />
+    <entry file="file://$PROJECT_DIR$/server/src/wasm_resource.rs" />
+    <entry file="file://$PROJECT_DIR$/server/Cargo.toml" />
+    <entry file="file://$PROJECT_DIR$/src/imports.rs" />
+    <entry file="file://$PROJECT_DIR$/server/src/lib.rs" />
+    <entry file="file://$PROJECT_DIR$/server/src/wasm_util.rs" />
+    <entry file="file://$PROJECT_DIR$/server/src/wasm_runtime.rs" />
     <entry file="file://$PROJECT_DIR$/src/log.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -492,13 +370,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wasm_imports.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="42" lean-forward="true" selection-end-line="83" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wasm_imports.rs" />
     <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/wasmer-runtime-core-0.17.1/src/import.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -555,9 +427,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/imports/wasm_capi_structs.rs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/imports/wasm_capi_structs.rs" />
     <entry file="file://$PROJECT_DIR$/src/util.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -606,17 +476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/wasmer-runtime-core-0.17.1/src/memory/ptr.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="71" column="20" lean-forward="true" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="20" />
-          <folding>
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#1900#1901#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/wasm_memory.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1345">
@@ -628,28 +487,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="94" column="10" selection-start-line="94" selection-start-column="10" selection-end-line="94" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wasm_pointers.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="84" column="42" selection-start-line="84" selection-start-column="42" selection-end-line="84" selection-end-column="42" />
-          <folding>
-            <element signature="e#707#708#0" expanded="true" />
-            <element signature="e#740#741#0" expanded="true" />
-            <element signature="e#2395#2396#0" expanded="true" />
-            <element signature="e#2456#2457#0" expanded="true" />
-            <element signature="e#2529#2530#0" expanded="true" />
-            <element signature="e#2615#2616#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/wasmer-runtime-core-0.17.1/src/types.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="228" column="17" selection-start-line="228" selection-start-column="17" selection-end-line="228" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -680,13 +517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cargo.toml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/capi/build.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -694,45 +524,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wasm_capi/struct.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-19600">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/altv-capi-client.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="10" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wasm_capi/structs.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="1616" column="2" selection-start-line="1616" selection-start-column="2" selection-end-line="1616" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/capi/src/altv_client.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="2" column="501498" selection-start-line="2" selection-start-column="501498" selection-end-line="2" selection-end-column="501498" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wasm_capi/struct.rs" />
     <entry file="file://$PROJECT_DIR$/capi/src/lib.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" selection-start-line="1" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wasm_capi/mod.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="3" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -757,20 +553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/imports/wasi.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/imports/capi.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="70" selection-start-line="21" selection-start-column="70" selection-end-line="21" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lib.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -782,10 +564,114 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/wasm_capi/mod.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/imports/wasi.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/wasmer-runtime-core-0.17.1/src/types.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="228" column="17" selection-start-line="228" selection-start-column="17" selection-end-line="228" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/wasmer-runtime-core-0.17.1/src/memory/ptr.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="127" column="16" selection-start-line="127" selection-start-column="11" selection-end-line="127" selection-end-column="16" />
+          <folding>
+            <element signature="e#1874#1875#0" expanded="true" />
+            <element signature="e#1900#1901#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rustup/toolchains/stable-x86_64-pc-windows-msvc/lib/rustlib/src/rust/src/liballoc/vec.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="846" column="11" selection-start-line="846" selection-start-column="11" selection-end-line="846" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/capi/altv-capi-client-static-win32/include/altv-capi-client.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/capi/altv-capi-client-static-mtd-win32/include/client/altv-capi.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-142889">
+          <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/capi/altv-capi-client-static-win32/include/client/altv-capi.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="3" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/capi/src/altv_client.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="334" column="70" lean-forward="true" selection-start-line="334" selection-start-column="70" selection-end-line="334" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/altv-capi-client.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="81595" column="1" selection-start-line="81595" selection-start-column="1" selection-end-line="81595" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cargo.toml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wasm_capi/structs.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="640" column="10" lean-forward="true" selection-start-line="640" selection-start-column="10" selection-end-line="640" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="97" lean-forward="true" selection-start-line="97" selection-end-line="97" />
+        <state relative-caret-position="186">
+          <caret line="248" column="55" selection-start-line="248" selection-start-column="55" selection-end-line="248" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wasm_pointers.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="102" column="29" selection-start-line="102" selection-start-column="29" selection-end-line="102" selection-end-column="29" />
+          <folding>
+            <element signature="e#2562#2563#0" expanded="true" />
+            <element signature="e#2648#2649#0" expanded="true" />
+            <element signature="e#3845#3846#0" expanded="true" />
+            <element signature="e#3874#3875#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/imports/capi.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
         </state>
       </provider>
     </entry>

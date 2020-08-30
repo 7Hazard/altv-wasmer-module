@@ -1,8 +1,8 @@
 use wasmer_runtime::{imports, func, ImportObject, Ctx, WasmPtr};
 use altv_capi;
 use std::mem::{
-    transmute,
-    size_of
+  transmute,
+  size_of,
 };
 use wasmer_runtime::memory::MemoryView;
 use core::borrow::BorrowMut;
@@ -10,10 +10,11 @@ use crate::wasm_ctxdata::{CtxData, WasmCtxDataGetter};
 use once_cell::sync::OnceCell;
 use std::sync::RwLock;
 use crate::wasm_pointers::WasmPtrExtentions;
+use crate::wasm_capi;
 
 pub fn get() -> ImportObject
 {
-    imports! {
+  imports! {
       // Define the "env" namespace that was implicitly used
       // by our sample application.
       "env" => {
@@ -25,54 +26,45 @@ pub fn get() -> ImportObject
 }
 
 fn alt_ICore_LogInfo(
-    ctx: &mut Ctx,
-    _instance: WasmPtr<crate::wasm_capi::structs::Wasm_alt_ICore>,
-    msg: WasmPtr<altv_capi::alt_StringView>
+  ctx: &mut Ctx,
+  _instance: WasmPtr<wasm_capi::alt_ICore>,
+  msg: WasmPtr<wasm_capi::alt_StringView>,
 )
 {
-    // core is ptr, 4 bytes, virtual pointer, ptr by id
-    // msg is ptr to struct, 4 bytes, in wasm memory
-    // msg.data is ptr to u8, 4 bytes
-    // msg.size is u64, 8 bytes
-
-//    let data = ctx.ctxdata();
-    let mem = ctx.memory(0);
-    let memview : MemoryView<u8> = mem.view();
-    
-    let core_ptr = _instance.ptr_by_id_err(ctx, &format!("_instance arg was invalid ({})", _instance.offset()));
-    
-//    unsafe {
-//        let msg_struct = msg.structure_err(ctx, &format!("msg arg was invalid ({})", msg.offset()));
-//        let msg_struct = memview[msg.offset() as usize + 0].as_ptr() as *mut altv_capi::alt_StringView;
-        
-//        let msg_data = memview[msg.offset() as usize + 0].as_ptr() as *mut u32;
-//        let msg_data_value = memview[*msg_data as usize].as_ptr();
-//
-//        let msg_size = memview[msg.offset() as usize + 4].as_ptr() as *mut u64;
-//        let msg_size_value = *msg_size;
-//
-//        let mut msg_c = altv_capi::alt_StringView {
-//            data: msg_data_value as _,
-//            size: msg_size_value as _,
-//        };
-
-//        altv_capi::alt_ICore_LogInfo(core_ptr, msg_struct);
-//    }
+  std::panic::set_hook(Box::new(|panic_info|{
+    if let Some(s) = panic_info.payload().downcast_ref::<&str>() {
+      loge!("panic occurred: {:?}", s);
+    } else {
+      loge!("panic occurred");
+    }
+  }));
+  
+  unsafe {
+    logi!("1");
+    let _instance = _instance.ptr_by_id_err(ctx, &format!("_instance arg was invalid ({})", _instance.offset()));
+    logi!("2");
+    let mut msg = (*msg.mem_err(ctx, &format!("msg arg was invalid ({})", msg.offset()))).reconstruct_err(ctx, &format!("could not reconstruct msg"));
+    logi!("3");
+    altv_capi::alt_ICore_LogInfo(_instance, &mut msg as _);
+    logi!("4");
+  }
+  
+  std::panic::take_hook();
 }
 
 fn alt_StringView_Create_6(
-    ctx: &mut Ctx,
-    _p0: WasmPtr<altv_capi::alt_StringView>,
-    _returnValue: WasmPtr<altv_capi::alt_StringView>
+  ctx: &mut Ctx,
+  _p0: WasmPtr<altv_capi::alt_StringView>,
+  _returnValue: WasmPtr<altv_capi::alt_StringView>,
 )
 {
-    // core is ptr, 4 bytes
-    // msg is ptr to struct, 4 bytes
-    // msg.data is ptr to u8, 4 bytes
-    // msg.size is u64, 8 bytes
+  // core is ptr, 4 bytes
+  // msg is ptr to struct, 4 bytes
+  // msg.data is ptr to u8, 4 bytes
+  // msg.size is u64, 8 bytes
 
-    let mem = ctx.memory(0);
-    let memview : MemoryView<u8> = mem.view();
+  let mem = ctx.memory(0);
+  let memview: MemoryView<u8> = mem.view();
 
 //    unsafe {
 

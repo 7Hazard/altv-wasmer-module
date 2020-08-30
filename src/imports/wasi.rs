@@ -13,7 +13,7 @@ pub fn get() -> ImportObject
     }
 }
 
-fn proc_exit(ctx: &mut Ctx, code: i32) {
+fn proc_exit(_ctx: &mut Ctx, code: i32) {
     loge!("proc_exit CALLED WITH CODE {} (THIS FUNCTION DOES NOTHING)", code);
 }
 

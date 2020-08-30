@@ -2,7 +2,7 @@ use std::sync::{Mutex, Arc, RwLock, RwLockReadGuard};
 use once_cell::sync::OnceCell;
 use std::collections::HashMap;
 use std::collections::hash_map::RandomState;
-use wasmer_runtime::{Ctx, WasmPtr};
+use wasmer_runtime::{Ctx, WasmPtr, Array};
 use crate::wasm_ctxdata::WasmCtxDataGetter;
 
 /// Current has memory leaks cause entries are not removed  
@@ -77,22 +77,53 @@ impl PointerTable {
 }
 
 pub trait WasmPtrExtentions<T> {
-    fn ptr_by_id(&self, ctx: &Ctx) -> Option<*mut T>;
-    fn ptr_by_id_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T;
-    fn structure_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T;
+    //    fn ptr_by_id(&self, ctx: &Ctx) -> Option<*mut T>;
+    fn ptr_by_id_err<Z>(&self, ctx: &Ctx, err_msg: &String) -> *mut Z;
+    fn mem_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T;
 }
 
 impl <T: Copy + wasmer_runtime::types::ValueType> WasmPtrExtentions<T> for WasmPtr<T>
 {
-    fn ptr_by_id(&self, ctx: &Ctx) -> Option<*mut T>
-    {
-        ctx.ctxdata().ptr_table.get_ptr(self.offset())
-    }
-    fn ptr_by_id_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T
+    //    fn ptr_by_id(&self, ctx: &Ctx) -> Option<*mut T>
+//    {
+//        ctx.ctxdata().ptr_table.get_ptr(self.offset())
+//    }
+
+    fn ptr_by_id_err<Z>(&self, ctx: &Ctx, err_msg: &String) -> *mut Z
     {
         ctx.ctxdata().ptr_table.get_ptr(self.offset()).expect(err_msg.as_str())
     }
-    fn structure_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T {
-        ctx.memory(0).view()[self.offset() as usize + 0].as_ptr() as *mut T
+
+    // TODO: validate self.offset
+    fn mem_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T {
+        ctx.memory(0).view()[self.offset() as usize].as_ptr() as *mut T
+    }
+}
+
+pub trait WasmPtrArrayExtentions<T> {
+    //    fn ptr_by_id(&self, ctx: &Ctx) -> Option<*mut T>;
+//    fn ptr_by_id_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T;
+    fn mem_index_err(&self, ctx: &Ctx, index: usize, err_msg: &String) -> *mut T;
+    fn mem_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T;
+}
+
+impl <T: Copy + wasmer_runtime::types::ValueType> WasmPtrArrayExtentions<T> for WasmPtr<T, Array>
+{
+//    fn ptr_by_id(&self, ctx: &Ctx) -> Option<*mut T>
+//    {
+//        ctx.ctxdata().ptr_table.get_ptr(self.offset())
+//    }
+
+//    fn ptr_by_id_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T
+//    {
+//        ctx.ctxdata().ptr_table.get_ptr(self.offset()).expect(err_msg.as_str())
+//    }
+
+    // TODO: validate self.offset
+    fn mem_index_err(&self, ctx: &Ctx, index: usize, err_msg: &String) -> *mut T {
+        ctx.memory(0).view()[self.offset() as usize + std::mem::size_of::<T>()*index].as_ptr() as *mut T
+    }
+    fn mem_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T {
+        self.mem_index_err(ctx, 0, err_msg)
     }
 }

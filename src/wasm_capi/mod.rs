@@ -3,4 +3,4 @@
 #[allow(non_snake_case)]
 #[allow(dead_code)]
 pub mod structs;
-
+pub use structs::*;
