@@ -96,7 +96,7 @@ impl <T: Copy + wasmer_runtime::types::ValueType> WasmPtrExtentions<T> for WasmP
 
     // TODO: validate self.offset
     fn mem_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T {
-        ctx.memory(0).view()[self.offset() as usize].as_ptr() as *mut T
+        ctx.ctxdata().heap.view()[self.offset() as usize].as_ptr() as *mut T
     }
 }
 

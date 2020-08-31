@@ -30,26 +30,12 @@ fn alt_ICore_LogInfo(
   _instance: WasmPtr<wasm_capi::alt_ICore>,
   msg: WasmPtr<wasm_capi::alt_StringView>,
 )
-{
-  std::panic::set_hook(Box::new(|panic_info|{
-    if let Some(s) = panic_info.payload().downcast_ref::<&str>() {
-      loge!("panic occurred: {:?}", s);
-    } else {
-      loge!("panic occurred");
-    }
-  }));
-  
+{ 
   unsafe {
-    logi!("1");
     let _instance = _instance.ptr_by_id_err(ctx, &format!("_instance arg was invalid ({})", _instance.offset()));
-    logi!("2");
     let mut msg = (*msg.mem_err(ctx, &format!("msg arg was invalid ({})", msg.offset()))).reconstruct_err(ctx, &format!("could not reconstruct msg"));
-    logi!("3");
     altv_capi::alt_ICore_LogInfo(_instance, &mut msg as _);
-    logi!("4");
   }
-  
-  std::panic::take_hook();
 }
 
 fn alt_StringView_Create_6(

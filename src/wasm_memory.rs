@@ -102,9 +102,9 @@ impl<'ctx> Heap<'ctx>
         }
     }
 
-    pub fn view(&mut self) -> MemoryView<u8>
+    pub fn view(&self) -> MemoryView<u8>
     {
-        return self.wasm_instance.context_mut().memory(0).view();
+        return self.wasm_instance.context().memory(0).view();
     }
 
     /// Inside the closure 'f',
