@@ -6,7 +6,6 @@ use std::sync::{Mutex, MutexGuard, RwLock, RwLockReadGuard};
 use std::collections::{HashMap, BTreeMap, HashSet};
 use std::os::raw::c_void;
 use wasmer_runtime::memory::MemoryView;
-use crate::wasm_ctxdata::CtxData;
 use std::mem::size_of;
 use std::ptr::{null_mut, null};
 use std::cell::UnsafeCell;
@@ -26,11 +25,13 @@ struct HeapBlock
 
 pub struct Heap<'ctx>
 {
+    /// The WASM instance
+    // instance: &'ctx mut Instance,
+
+    memory: &'ctx Memory,
+
     // The page used for the memory
 //    page: Pages,
-
-    /// The WASM instance
-    wasm_instance: &'ctx mut Instance,
 
     /// The start of the heap
     start: *mut HeapBlock,
@@ -51,23 +52,18 @@ pub struct Heap<'ctx>
 
 impl<'ctx> Heap<'ctx>
 {
-    pub fn init(wasminst: &mut Instance) -> Heap
+    pub fn init(instance: &Instance) -> Option<Heap>
     {
-//        let ctx = wasminst.context_mut();
-        let mem = wasminst.context().memory(0);
-        let memview: MemoryView<u8> = mem.view();
+        let memview: MemoryView<u8> = instance.context().memory(0).view();
 
         // Get heap base from exported global
-        let heapbase = wasminst.exports().find(
-            |(name, _export)| {
-                name == "__heap_base"
-            }
-        ).expect("Could not find __heap_base").1;
-        let start = match heapbase {
+        let start = match instance.exports().find(|(name, _export)| {
+            name == "__heap_base"
+        })?.1 {
             wasmer_runtime::Export::Global(g) => g.get().to_u128() as u32,
             _ => {
-                loge!("Could not retrieve '__heap_base' as a global export");
-                0
+                loge!("__heap_base was not a proper export export");
+                return None;
             }
         };
         logi!("Heap start: {}", start);
@@ -88,24 +84,24 @@ impl<'ctx> Heap<'ctx>
                 prev: null_mut()
             };
 
-            return Heap {
-//            page: page,
-//            mem: memview,
-                wasm_instance: wasminst,
+            return Some(Heap {
+                // instance,
+                memory: &instance.context().memory(0),
+                // page: page,
+                // mem: memview,
                 start: first,
                 size: size,
-//            allocations: BTreeMap::new(),
+                // allocations: BTreeMap::new(),
                 allocations: HashSet::new(),
                 total_allocated: 0,
                 total_unallocated: (*first).size,
-            };
+            });
         }
     }
 
-    pub fn view(&self) -> MemoryView<u8>
-    {
-        return self.wasm_instance.context().memory(0).view();
-    }
+    // fn mem(&self) -> &Memory {
+    //     self.instance.context().memory(0)
+    // }
 
     /// Inside the closure 'f',
     /// return false to stop iterating
@@ -216,10 +212,10 @@ impl<'ctx> Heap<'ctx>
 
         self.allocations.remove(&ptr);
 
-        let mem = self.view();
+        let memview: MemoryView<u8> = self.memory.view();
 
         unsafe {
-            let block: *mut HeapBlock = mem[blockptr as usize].as_ptr() as *mut HeapBlock;
+            let block: *mut HeapBlock = memview[blockptr as usize].as_ptr() as *mut HeapBlock;
 //            logi!("free: block size: {}", (*block).size);
             (*block).free = true;
 

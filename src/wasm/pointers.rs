@@ -3,7 +3,8 @@ use once_cell::sync::OnceCell;
 use std::collections::HashMap;
 use std::collections::hash_map::RandomState;
 use wasmer_runtime::{Ctx, WasmPtr, Array};
-use crate::wasm_ctxdata::WasmCtxDataGetter;
+use crate::wasm::ctx::WasmCtxExtentions;
+use wasmer_runtime::memory::MemoryView;
 
 /// Current has memory leaks cause entries are not removed  
 /// HIGH RISK FOR DEADLOCK  
@@ -61,15 +62,13 @@ impl PointerTable {
             let mut ids = self.id_by_ptr.write().expect("Could not write to ID_BY_PTR");
 
             // create a new id for the ptr
-            let new_id = ids.len() as u32 +1;
+            id = ids.len() as u32 +1;
 
             let mut ptrs = self.ptr_by_id.write().expect("Could not write to PTR_BY_ID");
 
             // insert new id
-            ids.insert(ptr, new_id);
-            ptrs.insert(new_id, ptr);
-
-            return new_id;
+            ids.insert(ptr, id);
+            ptrs.insert(id, ptr);
         }
 
         return id;
@@ -91,12 +90,12 @@ impl <T: Copy + wasmer_runtime::types::ValueType> WasmPtrExtentions<T> for WasmP
 
     fn ptr_by_id_err<Z>(&self, ctx: &Ctx, err_msg: &String) -> *mut Z
     {
-        ctx.ctxdata().ptr_table.get_ptr(self.offset()).expect(err_msg.as_str())
+        ctx.data().ptr_table.get_ptr(self.offset()).expect(err_msg.as_str())
     }
 
     // TODO: validate self.offset
     fn mem_err(&self, ctx: &Ctx, err_msg: &String) -> *mut T {
-        ctx.ctxdata().heap.view()[self.offset() as usize].as_ptr() as *mut T
+        ctx.memview()[self.offset() as usize].as_ptr() as *mut T
     }
 }
 

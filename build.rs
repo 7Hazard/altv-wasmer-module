@@ -67,8 +67,8 @@ fn gen_wasm_capi() {
 
 use wasmer_runtime::{types::ValueType, WasmPtr, Array, Ctx};
 use altv_capi;
-use crate::wasm_pointers::WasmPtrExtentions;
-use crate::wasm_pointers::WasmPtrArrayExtentions;
+use crate::wasm::pointers::WasmPtrExtentions;
+use crate::wasm::pointers::WasmPtrArrayExtentions;
 
 ");
 

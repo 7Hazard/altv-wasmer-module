@@ -6,11 +6,10 @@ use std::mem::{
 };
 use wasmer_runtime::memory::MemoryView;
 use core::borrow::BorrowMut;
-use crate::wasm_ctxdata::{CtxData, WasmCtxDataGetter};
 use once_cell::sync::OnceCell;
 use std::sync::RwLock;
-use crate::wasm_pointers::WasmPtrExtentions;
 use crate::wasm_capi;
+use crate::wasm::pointers::WasmPtrExtentions;
 
 pub fn get() -> ImportObject
 {
@@ -30,7 +29,7 @@ fn alt_ICore_LogInfo(
   _instance: WasmPtr<wasm_capi::alt_ICore>,
   msg: WasmPtr<wasm_capi::alt_StringView>,
 )
-{ 
+{
   unsafe {
     let _instance = _instance.ptr_by_id_err(ctx, &format!("_instance arg was invalid ({})", _instance.offset()));
     let mut msg = (*msg.mem_err(ctx, &format!("msg arg was invalid ({})", msg.offset()))).reconstruct_err(ctx, &format!("could not reconstruct msg"));
