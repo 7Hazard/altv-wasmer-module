@@ -62,7 +62,7 @@ impl<'ctx> Heap<'ctx>
             |(name, _export)| {
                 name == "__heap_base"
             }
-        ).unwrap().1;
+        ).expect("Could not find __heap_base").1;
         let start = match heapbase {
             wasmer_runtime::Export::Global(g) => g.get().to_u128() as u32,
             _ => {
