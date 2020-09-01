@@ -10,18 +10,13 @@ use once_cell::sync::OnceCell;
 use std::sync::RwLock;
 use crate::wasm_capi;
 use crate::wasm::pointers::WasmPtrExtentions;
+use crate::wasm::ctx::WasmCtxExtentions;
 
-pub fn get() -> ImportObject
+fn alt_ICore_Instance(ctx: &mut Ctx) -> u32
 {
-  imports! {
-      // Define the "env" namespace that was implicitly used
-      // by our sample application.
-      "env" => {
-          // the func! macro autodetects the signature
-          "alt_ICore_LogInfo" => func!(alt_ICore_LogInfo),
-          "alt_StringView_Create_6" => func!(alt_StringView_Create_6),
-      },
-    }
+  unsafe {
+    return ctx.data_mut().ptr_table.get_id_by_ptr(altv_capi::alt_ICore_Instance());
+  }
 }
 
 fn alt_ICore_LogInfo(
@@ -69,4 +64,18 @@ fn alt_StringView_Create_6(
 //        let _returnValue = altv_capi::alt_StringView;
 //        altv_capi::alt_StringView_Create_6(_p0, &mut _returnValue);
 //    }
+}
+
+pub fn get() -> ImportObject
+{
+  imports! {
+      // Define the "env" namespace that was implicitly used
+      // by our sample application.
+      "env" => {
+          // the func! macro autodetects the signature
+          "alt_ICore_Instance" => func!(alt_ICore_Instance),
+          "alt_ICore_LogInfo" => func!(alt_ICore_LogInfo),
+          "alt_StringView_Create_6" => func!(alt_StringView_Create_6),
+      },
+    }
 }

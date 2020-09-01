@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="33e08a54-ceaa-4ed5-8d14-f436d61287a9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.rs" beforeDir="false" afterPath="$PROJECT_DIR$/build.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/imports/capi.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/imports/capi.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imports/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/imports/mod.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resource.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/resource.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wasm_ctxdata.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/wasm/ctxdata.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wasm_memory.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/wasm/memory.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wasm_pointers.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/wasm/pointers.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wasm_util.rs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,22 +107,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/1920.302.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1598900900031" />
-    <state width="1877" height="263" key="GridCell.Tab.0.bottom" timestamp="1598915730676">
+    <state width="1877" height="263" key="GridCell.Tab.0.bottom" timestamp="1598918701832">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="263" key="GridCell.Tab.0.bottom/1920.302.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1598915730676" />
-    <state width="1877" height="263" key="GridCell.Tab.0.center" timestamp="1598915730676">
+    <state width="1877" height="263" key="GridCell.Tab.0.bottom/1920.302.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1598918701832" />
+    <state width="1877" height="263" key="GridCell.Tab.0.center" timestamp="1598918701831">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="263" key="GridCell.Tab.0.center/1920.302.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1598915730676" />
-    <state width="1877" height="263" key="GridCell.Tab.0.left" timestamp="1598915730676">
+    <state width="1877" height="263" key="GridCell.Tab.0.center/1920.302.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1598918701831" />
+    <state width="1877" height="263" key="GridCell.Tab.0.left" timestamp="1598918701831">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="263" key="GridCell.Tab.0.left/1920.302.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1598915730676" />
-    <state width="1877" height="263" key="GridCell.Tab.0.right" timestamp="1598915730676">
+    <state width="1877" height="263" key="GridCell.Tab.0.left/1920.302.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1598918701831" />
+    <state width="1877" height="263" key="GridCell.Tab.0.right" timestamp="1598918701831">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="263" key="GridCell.Tab.0.right/1920.302.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1598915730676" />
+    <state width="1877" height="263" key="GridCell.Tab.0.right/1920.302.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1598918701831" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1598913521017">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

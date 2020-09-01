@@ -10,6 +10,17 @@ pub unsafe extern "C" fn start(resource: *mut alt_IResource) -> bool
     let wasmres = WasmResource::from(alt_IResource_GetImpl(resource));
     logi!("Starting {}", wasmres.name);
 
+    // start functions
+    match wasmres.instance.call("_start", &[]) {
+        Err(e) => {}
+        Ok(v) => {}
+    };
+    match wasmres.instance.call("__wasm_call_ctors", &[]) {
+        Err(e) => {}
+        Ok(v) => {}
+    };
+
+    // altMain
     let core_ptr = wasmres.instance.context_mut().data_mut().ptr_table.get_id_by_ptr(util::core());
     match wasmres.instance.call("altMain", &[Value::I32(core_ptr as _)]) {
         Err(e) => {
